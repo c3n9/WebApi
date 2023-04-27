@@ -1,0 +1,56 @@
+﻿<Page x:Class="TestWebApiInWPF.Pages.PAddUser"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TestWebApiInWPF.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PAddUser"
+      Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <TextBlock Text="Добавление пользователя"
+                       FontSize="25"/>
+            <TextBlock Text="Имя"/>
+            <TextBox x:Name="TBName"/>
+            <TextBlock Text="Возраст"/>
+            <TextBox x:Name="TBAge"/>
+            <TextBlock Text="Город"/>
+            <TextBox x:Name="TBCity"/>
+            <TextBlock Text="Роль"/>
+            <ComboBox DisplayMemberPath="Name"
+                      x:Name="CBRole"/>
+            <TextBlock Text="Пол"/>
+            <ComboBox DisplayMemberPath="Name"
+                      x:Name="CBGender"/>
+            <Button x:Name="BAdd"
+                    Click="BAdd_Click"
+                    Content="Добавить"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <TextBlock Text="Пользователи"
+                       FontSize="25"/>
+            <DataGrid x:Name="DGUsers"
+                      CanUserAddRows="False"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Имя" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Возраст" Binding="{Binding Age}"/>
+                    <DataGridTextColumn Header="Город" Binding="{Binding City}"/>
+                    <DataGridTextColumn Header="Роль" Binding="{Binding Role}"/>
+                    <DataGridTextColumn Header="Пол" Binding="{Binding Gender}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button x:Name="BDelete"
+                    Content="Удалить"
+                    Click="BDelete_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>
