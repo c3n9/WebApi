@@ -15,10 +15,10 @@ namespace TestWebApi.Controllers
         [Route("api/Roles/GetallRole")]
         public IHttpActionResult GetAllRole()
         {
-            return Ok(db.Role.Select(u => new
+            return Ok(db.Role.Select(r => new
             {
-                u.Name
-
+                r.Id,
+                r.Name
             }));
         }
     }

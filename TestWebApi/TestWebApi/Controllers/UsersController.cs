@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -20,8 +21,19 @@ namespace TestWebApi.Controllers
                 u.Name,
                 u.Age,
                 u.City,
-                Role = u.Role.Name,
-                Gender = u.Gender.Name
+                RoleId = u.RoleId,
+                GenderId = u.GenderId,
+                Role = new
+                {
+                    u.Role.Id,
+                    u.Role.Name
+                },
+                Gender = new
+                {
+                    u.Gender.Id,
+                    u.Gender.Name
+                }
+
 
             }));
         }
@@ -38,8 +50,16 @@ namespace TestWebApi.Controllers
                     foundUser.Name,
                     foundUser.Age,
                     foundUser.City,
-                    Role = foundUser.Role.Name,
-                    Gender = foundUser.Gender.Name
+                    Role = new
+                    {
+                        foundUser.Role.Id,
+                        foundUser.Role.Name
+                    },
+                    Gender = new
+                    {
+                        foundUser.Gender.Id,
+                        foundUser.Gender.Name
+                    }
                 });
         }
         [HttpPost]
@@ -53,7 +73,7 @@ namespace TestWebApi.Controllers
             }
             return Ok();
         }
-        [HttpPost]
+        [HttpDelete]
         [Route("api/Users/Delete/{name}")]
         public IHttpActionResult DeleteUser(string name)
         {
@@ -62,7 +82,18 @@ namespace TestWebApi.Controllers
                 return BadRequest("Пользователь не найден");
             db.User.Remove(user);
             db.SaveChanges();
+            return Ok(true);
+        }
+        [HttpPut]
+        [Route("api/Users/Edit/{name}")]
+        public IHttpActionResult PutUser(int id)
+        {
+            var user = db.User.FirstOrDefault(u => u.Id == id);
+            if (user == null)
+                return BadRequest("Пользователь не найден");
+            db.Entry(user).State = EntityState.Modified;
             return Ok();
         }
+        
     }
 }

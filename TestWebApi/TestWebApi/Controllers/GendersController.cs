@@ -13,12 +13,12 @@ namespace TestWebApi.Controllers
         TestUserEntities db = new TestUserEntities();
         [HttpGet]
         [Route("api/Genders/GetallGender")]
-        public IHttpActionResult GetAllRole()
+        public IHttpActionResult GetAllGender()
         {
-            return Ok(db.Gender.Select(u => new
+            return Ok(db.Gender.Select(g => new
             {
-                u.Name
-
+                g.Id,
+                g.Name
             }));
         }
     }

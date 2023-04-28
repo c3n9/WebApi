@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\c#projects\TestWebApiInWPF\TestWebApiInWPF\obj\Debug\
+C:\Users\C3n9\Desktop\WebApi\TestWebApiInWPF\TestWebApiInWPF\obj\Debug\
 TestWebApiInWPF
 none
 false
 DEBUG;TRACE
-D:\c#projects\TestWebApiInWPF\TestWebApiInWPF\App.xaml
-2-1488779537
+C:\Users\C3n9\Desktop\WebApi\TestWebApiInWPF\TestWebApiInWPF\App.xaml
+31191016686
 
-10-462591642
-14-1362964918
-MainWindow.xaml;Pages\PAddUser.xaml;
+111132965075
+15-2012145325
+MainWindow.xaml;Pages\PAddUser.xaml;Pages\PEditUser.xaml;
 
-True
+False
 

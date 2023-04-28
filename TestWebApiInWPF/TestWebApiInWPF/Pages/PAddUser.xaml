@@ -18,17 +18,22 @@
             <TextBlock Text="Добавление пользователя"
                        FontSize="25"/>
             <TextBlock Text="Имя"/>
-            <TextBox x:Name="TBName"/>
+            <TextBox x:Name="TBName"
+                     Text="{Binding Name}"/>
             <TextBlock Text="Возраст"/>
-            <TextBox x:Name="TBAge"/>
+            <TextBox x:Name="TBAge"
+                     Text="{Binding Age}"/>
             <TextBlock Text="Город"/>
-            <TextBox x:Name="TBCity"/>
+            <TextBox x:Name="TBCity"
+                     Text="{Binding City}"/>
             <TextBlock Text="Роль"/>
             <ComboBox DisplayMemberPath="Name"
-                      x:Name="CBRole"/>
+                      x:Name="CBRole"
+                      SelectedItem="{Binding RoleId}"/>
             <TextBlock Text="Пол"/>
             <ComboBox DisplayMemberPath="Name"
-                      x:Name="CBGender"/>
+                      x:Name="CBGender"
+                      SelectedItem="{Binding GenderId}"/>
             <Button x:Name="BAdd"
                     Click="BAdd_Click"
                     Content="Добавить"/>
@@ -44,13 +49,16 @@
                     <DataGridTextColumn Header="Имя" Binding="{Binding Name}"/>
                     <DataGridTextColumn Header="Возраст" Binding="{Binding Age}"/>
                     <DataGridTextColumn Header="Город" Binding="{Binding City}"/>
-                    <DataGridTextColumn Header="Роль" Binding="{Binding Role}"/>
-                    <DataGridTextColumn Header="Пол" Binding="{Binding Gender}"/>
+                    <DataGridTextColumn Header="Роль" Binding="{Binding Role.Name}"/>
+                    <DataGridTextColumn Header="Пол" Binding="{Binding Gender.Name}"/>
                 </DataGrid.Columns>
             </DataGrid>
             <Button x:Name="BDelete"
                     Content="Удалить"
                     Click="BDelete_Click"/>
+            <Button x:Name="BEdit"
+                    Content="Изменить"
+                    Click="BEdit_Click"/>
         </StackPanel>
     </Grid>
 </Page>
