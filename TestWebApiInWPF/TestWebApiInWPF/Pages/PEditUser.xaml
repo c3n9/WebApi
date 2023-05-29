@@ -6,8 +6,7 @@
       xmlns:local="clr-namespace:TestWebApiInWPF.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="PEditUser"
-      Loaded="Page_Loaded">
+      Title="PEditUser">
 
     <Grid>
         <StackPanel>
@@ -25,11 +24,11 @@
             <TextBlock Text="Роль"/>
             <ComboBox DisplayMemberPath="Name"
                       x:Name="CBRole"
-                      SelectedItem="{Binding RoleId}"/>
+                      SelectedItem="{Binding Role}"/>
             <TextBlock Text="Пол"/>
             <ComboBox DisplayMemberPath="Name"
                       x:Name="CBGender"
-                      SelectedItem="{Binding GenderId}"/>
+                      SelectedItem="{Binding Gender}"/>
             <Button x:Name="BSave"
                     Click="BSave_Click"
                     Content="Сохранить"/>

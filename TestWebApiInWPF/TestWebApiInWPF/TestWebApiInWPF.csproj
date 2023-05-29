@@ -65,6 +65,7 @@
     <Compile Include="Pages\PEditUser.xaml.cs">
       <DependentUpon>PEditUser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Service\DBConnection.cs" />
     <Compile Include="Service\NetManager.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

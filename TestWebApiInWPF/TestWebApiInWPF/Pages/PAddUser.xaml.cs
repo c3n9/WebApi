@@ -29,29 +29,26 @@ namespace TestWebApiInWPF.Pages
         public PAddUser()
         {
             InitializeComponent();
-            LoadItemsSources();
         }
-        private async void LoadItemsSources()
-        {
-            CBGender.ItemsSource = await NetManager.Get<List<Gender>>("api/Genders/GetallGender");
-            CBRole.ItemsSource = await NetManager.Get<List<Role>>("api/Roles/GetallRole");
-        }
+
         private async void Refresh()
         {
+            await DBConnection.RefreshData();
+            CBRole.ItemsSource = DBConnection.Roles.ToList();
+            CBGender.ItemsSource = DBConnection.Genders.ToList();
             contextUser = new User();
             DataContext = contextUser;
-            var users = await NetManager.Get<List<User>>("api/Users/GetallUsers");
+            var users = DBConnection.Users.ToList();
             DGUsers.ItemsSource = users;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            //LoadItemsSources();
             Refresh();
         }
 
         private async void BAdd_Click(object sender, RoutedEventArgs e)
-        { 
+        {
             await NetManager.Post("api/Users/Add", contextUser);
             Refresh();
         }

@@ -27,23 +27,15 @@ namespace TestWebApiInWPF.Pages
         public PEditUser(User user)
         {
             InitializeComponent();
-            LoadItemsSources();
+            CBRole.ItemsSource = DBConnection.Roles.ToList();
+            CBGender.ItemsSource = DBConnection.Genders.ToList();
             contextUser = user;
             DataContext = contextUser;
         }
-
-        private async void LoadItemsSources()
-        {
-            CBGender.ItemsSource = await NetManager.Get<List<Gender>>("api/Genders/GetallGender");
-            CBRole.ItemsSource = await NetManager.Get<List<Role>>("api/Roles/GetallRole");
-        }
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            //LoadItemsSources();
-        }
         private async void BSave_Click(object sender, RoutedEventArgs e)
         {
-            await NetManager.Put($"api/Users/Delete/{contextUser.Name}", contextUser);
+            await NetManager.Put($"api/Users/Edit", contextUser);
+            
             NavigationService.GoBack();
         }
         private void BCancel_Click(object sender, RoutedEventArgs e)

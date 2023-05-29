@@ -29,11 +29,11 @@
             <TextBlock Text="Роль"/>
             <ComboBox DisplayMemberPath="Name"
                       x:Name="CBRole"
-                      SelectedItem="{Binding RoleId}"/>
+                      SelectedItem="{Binding Role}"/>
             <TextBlock Text="Пол"/>
             <ComboBox DisplayMemberPath="Name"
                       x:Name="CBGender"
-                      SelectedItem="{Binding GenderId}"/>
+                      SelectedItem="{Binding Gender}"/>
             <Button x:Name="BAdd"
                     Click="BAdd_Click"
                     Content="Добавить"/>

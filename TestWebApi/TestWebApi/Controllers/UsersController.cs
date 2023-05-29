@@ -18,23 +18,12 @@ namespace TestWebApi.Controllers
         {
             return Ok(db.User.Select(u => new
             {
+                u.Id,
                 u.Name,
                 u.Age,
                 u.City,
                 RoleId = u.RoleId,
-                GenderId = u.GenderId,
-                Role = new
-                {
-                    u.Role.Id,
-                    u.Role.Name
-                },
-                Gender = new
-                {
-                    u.Gender.Id,
-                    u.Gender.Name
-                }
-
-
+                GenderId = u.GenderId
             }));
         }
         [HttpGet]
@@ -85,15 +74,17 @@ namespace TestWebApi.Controllers
             return Ok(true);
         }
         [HttpPut]
-        [Route("api/Users/Edit/{name}")]
-        public IHttpActionResult PutUser(int id)
+        [Route("api/Users/Edit")]
+        public IHttpActionResult PutUser(User contextUser)
         {
-            var user = db.User.FirstOrDefault(u => u.Id == id);
+            var user = db.User.FirstOrDefault(u => u.Id == contextUser.Id);
             if (user == null)
                 return BadRequest("Пользователь не найден");
-            db.Entry(user).State = EntityState.Modified;
+            if (ModelState.IsValid)
+                db.Entry(user).CurrentValues.SetValues(contextUser);
+            db.SaveChanges();
             return Ok();
         }
-        
+
     }
 }

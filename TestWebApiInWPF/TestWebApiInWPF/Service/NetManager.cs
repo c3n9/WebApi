@@ -5,17 +5,19 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using TestWebApiInWPF.Models;
 
 namespace TestWebApiInWPF.Service
 {
     public static class NetManager
     {
-        public static string URL = "http://localhost:49721/";
+        public static string URL = "https://localhost:44329/";
         public static HttpClient httpClient = new HttpClient();
 
         public static async Task <T> Get<T>(string controller)
         {
             var response = await httpClient.GetAsync(URL + controller);
+            var content  = await response.Content.ReadAsStringAsync();  
             var data = JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync());
             return data;
         }

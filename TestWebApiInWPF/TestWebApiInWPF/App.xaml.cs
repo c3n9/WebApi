@@ -16,16 +16,9 @@ namespace TestWebApiInWPF
     /// </summary>
     public partial class App : Application
     {
-        public static List<Role> Roles = new List<Role>();
-        public static List<Gender> Genders = new List<Gender>();
         public App()
         {
-            LoadItemsSources();
-        }
-        private async void LoadItemsSources()
-        {
-            Genders = await NetManager.Get<List<Gender>>("api/Genders/GetallGender");
-            Roles = await NetManager.Get<List<Role>>("api/Roles/GetallRole");
+            DBConnection.InitializeDBConnection();
         }
     }
 }
